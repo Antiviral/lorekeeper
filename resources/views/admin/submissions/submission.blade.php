@@ -25,7 +25,7 @@
                 <div class="col-md-2 col-4">
                     <h5>User</h5>
                 </div>
-                <div class="col-md-10 col-8">{!! $submission->user->displayName !!} ({!! $submission->user->displayNamePronouns !!})</div> 
+                <div class="col-md-10 col-8">{!! $submission->user->displayName !!} ({!! $submission->user->displayNamePronouns !!})</div>
             </div>
             @if ($submission->prompt_id)
                 <div class="row">
