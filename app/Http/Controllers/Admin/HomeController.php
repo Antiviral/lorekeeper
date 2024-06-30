@@ -17,6 +17,7 @@ use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Adoption\Surrender;
 
 class HomeController extends Controller {
     /**
@@ -42,6 +43,7 @@ class HomeController extends Controller {
             'galleryRequireApproval' => $galleryRequireApproval,
             'gallerySubmissionCount' => GallerySubmission::collaboratorApproved()->where('status', 'Pending')->count(),
             'galleryAwardCount'      => GallerySubmission::requiresAward()->where('is_valued', 0)->count(),
+            'surrenderCount' => Surrender::where('status', 'Pending')->count(),
         ]);
     }
 
