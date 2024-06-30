@@ -157,6 +157,6 @@ class Notification extends Model {
     public const GALLERY_SUBMISSION_STAFF_COMMENTS = 513;
     public const GALLERY_SUBMISSION_EDITED = 514;
     public const GALLERY_SUBMISSION_PARTICIPANT = 515;
-    const SURRENDER_APPROVED                = 218;
-    const SURRENDER_REJECTED                = 219;
+    public const SURRENDER_APPROVED = 218;
+    public const SURRENDER_REJECTED = 219;
 }
