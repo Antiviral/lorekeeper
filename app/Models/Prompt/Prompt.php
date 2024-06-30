@@ -89,19 +89,17 @@ class Prompt extends Model {
         return $this->hasMany(PromptCriterion::class, 'prompt_id');
     }
 
-     /**
-     * Get the prompts parent
+    /**
+     * Get the prompts parent.
      */
-    public function parent()
-    {
+    public function parent() {
         return $this->belongsTo('App\Models\Prompt\Prompt', 'parent_id');
     }
 
     /**
-     * Get the prompts children
+     * Get the prompts children.
      */
-    public function children()
-    {
+    public function children() {
         return $this->hasMany('App\Models\Prompt\Prompt', 'parent_id');
     }
 

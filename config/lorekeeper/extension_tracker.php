@@ -14,14 +14,13 @@ return [
     // ],
 
     'prompt_prerequisites' => [
-        'key' => 'prompt_prerequisites',
+        'key'      => 'prompt_prerequisites',
         'wiki_key' => 'Prompt_Prerequisites',
         'creators' => json_encode([
             'Newt' => 'https://github.com/ne-wt/',
-            ]),
-            'version' => '1.0.0',
-        ],
-    
+        ]),
+        'version' => '1.0.0',
+    ],
 
     'sellablecharacters' => [
         'key'      => 'sellablecharacters',

@@ -56,18 +56,18 @@
                     </tbody>
                 </table>
             @endif
-            @if($prompt->children)
-            <h4 class="mt-2">Unlocks</h4>
-                @foreach($prompt->children as $children)
+            @if ($prompt->children)
+                <h4 class="mt-2">Unlocks</h4>
+                @foreach ($prompt->children as $children)
                     {!! $children->displayname !!}
                 @endforeach
             @endif
         </div>
         <div class="text-right">
-            @if($prompt->parent_id)
-                <p class="text-success">You have unlocked this prompt by completing {!! $prompt->parent->displayName !!} {{ $prompt->parent_quantity }} {{ $prompt->parent_quantity > 1 ? 'times' : 'time'}}.</p>
+            @if ($prompt->parent_id)
+                <p class="text-success">You have unlocked this prompt by completing {!! $prompt->parent->displayName !!} {{ $prompt->parent_quantity }} {{ $prompt->parent_quantity > 1 ? 'times' : 'time' }}.</p>
             @endif
-            @if($prompt->end_at && $prompt->end_at->isPast())
+            @if ($prompt->end_at && $prompt->end_at->isPast())
                 <span class="text-secondary">This prompt has ended.</span>
             @elseif($prompt->start_at && $prompt->start_at->isFuture())
                 <span class="text-secondary">This prompt is not open for submissions yet.</span>
