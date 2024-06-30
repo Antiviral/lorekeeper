@@ -32,4 +32,12 @@ return [
         'version' => '1.5.0',
     ],
 
+    'user_pronouns' => [
+        'key' => 'user_pronouns',
+        'wiki_key' => 'User_Pronouns',
+        'creators' => json_encode([
+            'AnimatedCritter' => 'https://github.com/animatedcritter/',
+        ]),
+        'version' => '1.0.0',
+    ],
 ];

@@ -19,8 +19,13 @@
                 {{-- Comment block header --}}
                 <div class="row mx-0 px-0 align-items-md-end">
                     <h5 class="mt-0 mb-1 col mx-0 px-0">
-                        {!! $comment->commenter->commentDisplayName !!} @if ($comment->commenter->isStaff == true)
+                        {!! $comment->commenter->commentDisplayName !!} 
+                        
+                        @if ($comment->commenter->isStaff == true)
                             <small class="text-success">Staff Member</small>
+                        @endif 
+                        @if($comment->commenter->profile->pronouns)
+                            <small class="text-secondary">{{ $comment->commenter->profile->pronouns }}</small>
                         @endif
                     </h5>
                     @if ($comment->is_featured)
