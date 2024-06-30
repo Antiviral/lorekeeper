@@ -176,7 +176,8 @@ class PromptController extends Controller {
      */
     public function getCreatePrompt() {
         return view('admin.prompts.create_edit_prompt', [
-            'prompt'     => new Prompt,
+            'prompt' => new Prompt,
+            'prompts' => ['none' => 'No parent'] + Prompt::active()->pluck('name', 'id')->toArray(),
             'categories' => ['none' => 'No category'] + PromptCategory::orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
             'criteria'   => Criterion::active()->orderBy('name')->pluck('name', 'id'),
         ]);
@@ -196,7 +197,8 @@ class PromptController extends Controller {
         }
 
         return view('admin.prompts.create_edit_prompt', [
-            'prompt'     => $prompt,
+            'prompt' => $prompt,
+            'prompts' => ['none' => 'No parent'] + Prompt::active()->where('id', '!=', $prompt->id)->pluck('name', 'id')->toArray(),
             'categories' => ['none' => 'No category'] + PromptCategory::orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
             'criteria'   => Criterion::active()->orderBy('name')->pluck('name', 'id'),
         ]);
@@ -213,8 +215,9 @@ class PromptController extends Controller {
     public function postCreateEditPrompt(Request $request, PromptService $service, $id = null) {
         $id ? $request->validate(Prompt::$updateRules) : $request->validate(Prompt::$createRules);
         $data = $request->only([
-            'name', 'prompt_category_id', 'summary', 'description', 'start_at', 'end_at', 'hide_before_start', 'hide_after_end', 'is_active', 'rewardable_type', 'rewardable_id', 'quantity', 'image', 'remove_image', 'prefix', 'hide_submissions', 'staff_only',
-            'criterion_id', 'criterion', 'criterion_currency_id', 'default_criteria',
+            'name', 'prompt_category_id', 'summary', 'description', 'start_at', 'end_at', 'hide_before_start', 'hide_after_end', 'is_active', 'rewardable_type', 'rewardable_id', 'quantity', 'image', 'remove_image', 'prefix', 'hide_submissions',
+            'parent_id', 'parent_quantity', 'staff_only',
+            'criterion_id', 'criterion', 'criterion_currency_id', 'default_criteria'
         ]);
         if ($id && $service->updatePrompt(Prompt::find($id), $data, Auth::user())) {
             flash('Prompt updated successfully.')->success();

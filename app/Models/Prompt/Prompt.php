@@ -14,7 +14,7 @@ class Prompt extends Model {
     protected $fillable = [
         'prompt_category_id', 'name', 'summary', 'description', 'parsed_description', 'is_active',
         'start_at', 'end_at', 'hide_before_start', 'hide_after_end', 'has_image', 'prefix',
-        'hide_submissions', 'staff_only', 'hash',
+        'hide_submissions', 'parent_id', 'parent_quantity', 'staff_only', 'hash',
     ];
 
     /**
@@ -87,6 +87,22 @@ class Prompt extends Model {
      */
     public function criteria() {
         return $this->hasMany(PromptCriterion::class, 'prompt_id');
+    }
+
+     /**
+     * Get the prompts parent
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Prompt\Prompt', 'parent_id');
+    }
+
+    /**
+     * Get the prompts children
+     */
+    public function children()
+    {
+        return $this->hasMany('App\Models\Prompt\Prompt', 'parent_id');
     }
 
     /**********************************************************************************************

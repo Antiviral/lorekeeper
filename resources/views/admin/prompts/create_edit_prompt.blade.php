@@ -60,6 +60,21 @@
     </div>
 
     <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                {!! Form::label('Prompt Parent (Optional)') !!} {!! add_help('A parent prompt means the user will be required to have an approved submission from the parent before they can enter this prompt.') !!}
+                {!! Form::select('parent_id', $prompts, $prompt->parent_id, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                {!! Form::label('Quantity') !!} {!! add_help('How many times they should have completed it.') !!}
+                {!! Form::number('parent_quantity', $prompt->parent_quantity ? $prompt->parent_quantity : 1, ['class' => 'form-control', 'min' => 1]) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::label('start_at', 'Start Time (Optional)') !!} {!! add_help('Prompts cannot be submitted to the queue before the starting time.') !!}
