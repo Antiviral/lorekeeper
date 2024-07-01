@@ -14,6 +14,15 @@ return [
     |
     */
 
+    'Reports'    => [
+        'power' => 'manage_reports',
+        'links' => [
+            [
+                'name' => 'Report Queue',
+                'url'  => 'admin/reports/pending',
+            ],
+        ],
+    ],
     'Admin'      => [
         'power' => 'admin',
         'links' => [
@@ -29,41 +38,21 @@ return [
                 'name' => 'Staff Reward Settings',
                 'url'  => 'admin/staff-reward-settings',
             ],
-        ],
-    ],
-    'Reports'    => [
-        'power' => 'manage_reports',
-        'links' => [
-            [
-                'name' => 'Report Queue',
-                'url'  => 'admin/reports/pending',
-            ],
-        ],
-    ],
-    'News' => [
-        'power' => 'manage_news',
-        'links' => [
             [
                 'name' => 'News',
                 'url'  => 'admin/news',
             ],
-        ],
-    ],
-    'Sales' => [
-        'power' => 'manage_sales',
-        'links' => [
             [
                 'name' => 'Sales',
                 'url'  => 'admin/sales',
             ],
-        ],
-    ],
-    'Pages'       => [
-        'power' => 'edit_pages',
-        'links' => [
             [
                 'name' => 'Pages',
                 'url'  => 'admin/pages',
+            ],
+            [
+                'name' => 'Raffles',
+                'url'  => 'admin/raffles',
             ],
         ],
     ],
@@ -116,11 +105,6 @@ return [
                 'name' => 'Item Grants',
                 'url'  => 'admin/grants/items',
             ],
-        ],
-    ],
-    'Masterlist' => [
-        'power' => 'manage_characters',
-        'links' => [
             [
                 'name' => 'Create Character',
                 'url'  => 'admin/masterlist/create-character',
@@ -129,6 +113,11 @@ return [
                 'name' => 'Create MYO Slot',
                 'url'  => 'admin/masterlist/create-myo',
             ],
+        ],
+    ],
+    'Masterlist' => [
+        'power' => 'manage_characters',
+        'links' => [
             [
                 'name' => 'Character Transfers',
                 'url'  => 'admin/masterlist/transfers/incoming',
@@ -147,60 +136,12 @@ return [
             ],
         ],
     ],
-    'Data'       => [
+    'Rewards'       => [
         'power' => 'edit_data',
         'links' => [
             [
-                'name' => 'Galleries',
-                'url'  => 'admin/data/galleries',
-            ],
-            [
-                'name' => 'Character Categories',
-                'url'  => 'admin/data/character-categories',
-            ],
-            [
-                'name' => 'Sub Masterlists',
-                'url'  => 'admin/data/sublists',
-            ],
-            [
-                'name' => 'Rarities',
-                'url'  => 'admin/data/rarities',
-            ],
-            [
-                'name' => 'Species',
-                'url'  => 'admin/data/species',
-            ],
-            [
-                'name' => 'Subtypes',
-                'url'  => 'admin/data/subtypes',
-            ],
-            [
-                'name' => 'Traits',
-                'url'  => 'admin/data/traits',
-            ],
-            [
-                'name' => 'Shops',
-                'url'  => 'admin/data/shops',
-            ],
-            [
-                'name' => 'Adoption Center',
-                'url'  => 'admin/data/adoptions/edit/1',
-            ],
-            [
-                'name' => 'Adopts',
-                'url'  => 'admin/data/stock',
-            ],
-            [
-                'name' => 'Prompt Categories',
-                'url'  => 'admin/data/prompt-categories',
-            ],
-            [
                 'name' => 'Currencies',
                 'url'  => 'admin/data/currencies',
-            ],
-            [
-                'name' => 'Prompts',
-                'url'  => 'admin/data/prompts',
             ],
             [
                 'name' => 'Loot Tables',
@@ -216,12 +157,57 @@ return [
             ],
         ],
     ],
-    'Raffles'    => [
-        'power' => 'manage_raffles',
+    'Characters'       => [
+        'power' => 'edit_data',
         'links' => [
             [
-                'name' => 'Raffles',
-                'url'  => 'admin/raffles',
+                'name' => 'Character Categories',
+                'url'  => 'admin/data/character-categories',
+            ],
+            [
+                'name' => 'Species',
+                'url'  => 'admin/data/species',
+            ],
+            [
+                'name' => 'Subtypes',
+                'url'  => 'admin/data/subtypes',
+            ],
+            [
+                'name' => 'Traits',
+                'url'  => 'admin/data/traits',
+            ],
+            [
+                'name' => 'Adoption Center',
+                'url'  => 'admin/data/adoptions/edit/1',
+            ],
+            [
+                'name' => 'Adopts',
+                'url'  => 'admin/data/stock',
+            ],
+        ],
+    ],
+    'Miscellaneous'       => [
+        'power' => 'edit_data',
+        'links' => [
+            [
+                'name' => 'Galleries',
+                'url'  => 'admin/data/galleries',
+            ],
+            [
+                'name' => 'Sub Masterlists',
+                'url'  => 'admin/data/sublists',
+            ],
+            [
+                'name' => 'Rarities',
+                'url'  => 'admin/data/rarities',
+            ],
+            [
+                'name' => 'Shops',
+                'url'  => 'admin/data/shops',
+            ],
+            [
+                'name' => 'Prompts',
+                'url'  => 'admin/data/prompts',
             ],
         ],
     ],

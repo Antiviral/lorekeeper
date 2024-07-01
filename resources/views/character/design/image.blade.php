@@ -19,7 +19,7 @@
                         <h3 class="text-center">Main Image</h3>
                         <div class="text-center">
                             <a href="{{ $request->imageUrl }}?v={{ $request->updated_at->timestamp }}" data-lightbox="entry" data-title="Request #{{ $request->id }}"><img src="{{ $request->imageUrl }}?v={{ $request->updated_at->timestamp }}" class="mw-100"
-                                    alt="Request {{ $request->id }}" /></a>
+                                    alt="Request {{ $request->id }}" id="character-profile-img" /></a>
                         </div>
                     </div>
                     <div class="col-md-6">

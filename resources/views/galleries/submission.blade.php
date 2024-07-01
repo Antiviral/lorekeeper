@@ -55,7 +55,7 @@
         <div class="text-center mb-4">
             <a href="{{ $submission->imageUrl }}" data-lightbox="entry" data-title="{{ $submission->displayTitle }}">
                 <img src="{{ $submission->imageUrl }}" class="image" style="max-width:100%; {{ isset($submission->parsed_text) && $submission->parsed_text ? 'max-height:50vh;' : 'max-height:70vh;' }} border-radius:.5em;" data-toggle="tooltip"
-                    title="Click to view larger size" alt="{{ $submission->displayTitle }}" />
+                    title="Click to view larger size" alt="{{ $submission->displayTitle }}" id="character-profile-img" />
             </a>
         </div>
     @endif
