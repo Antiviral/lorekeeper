@@ -206,7 +206,7 @@ class CharacterController extends Controller {
         $data = $request->only([
             'character_category_id', 'number', 'slug',
             'is_giftable', 'is_tradeable', 'is_sellable', 'sale_value',
-            'transferrable_at', 'pokemon_species', 'pokemon_types', 'pokemon_team',
+            'transferrable_at', 'pokwmon_team',
         ]);
         $this->character = Character::where('slug', $slug)->first();
         if (!$this->character) {

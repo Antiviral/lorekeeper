@@ -1106,9 +1106,6 @@ class CharacterManager extends Service {
             $characterData['is_tradeable'] = isset($data['is_tradeable']);
             $characterData['is_giftable'] = isset($data['is_giftable']);
             $characterData['sale_value'] = $data['sale_value'] ?? 0;
-            $characterData['pokemon_species'] = $data['pokemon_species'] ?? null;
-            $characterData['pokemon_types'] = $data['pokemon_types'] ?? null;
-            $characterData['pokemon_team'] = $data['pokemon_team'] ?? null;
             $characterData['transferrable_at'] = $data['transferrable_at'] ?? null;
             if ($character->is_myo_slot) {
                 $characterData['name'] = (isset($data['name']) && $data['name']) ? $data['name'] : null;

@@ -392,6 +392,7 @@ main > .row {
 /* Firefox */
 .pagination-popover input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .spoiler {
@@ -533,6 +534,8 @@ tr.outflow {
 .character-bio .nav-tabs.card-header-tabs .active {
     background-color: white;
 }
+
+#character-profile-img {max-width:50%;}
 
 #gift-trade-sell-box {display:flex;}
 
