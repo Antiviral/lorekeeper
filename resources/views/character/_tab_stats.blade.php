@@ -73,43 +73,43 @@
 @endif
 
 <script>
-        async function getPokemonTypes(species) {
-            try {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.toLowerCase()}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-
-                // Extract and capitalize the types
-                const types = data.types.map(typeInfo => typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1));
-
-                // Display the types
-                displayTypes(types);
-            } catch (error) {
-                console.error('Fetch error: ', error);
+    async function getPokemonTypes(species) {
+        try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.toLowerCase()}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            const data = await response.json();
+
+            // Extract and capitalize the types
+            const types = data.types.map(typeInfo => typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1));
+
+            // Display the types
+            displayTypes(types);
+        } catch (error) {
+            console.error('Fetch error: ', error);
         }
+    }
 
-        function displayTypes(types) {
-            const typesContainer = document.getElementById('pokemon-types');
-            if (types.length === 1) {
-                typesContainer.textContent = types[0];
-            } else if (types.length > 1) {
-                typesContainer.textContent = types.join('/');
-            } else {
-                typesContainer.textContent = 'Unknown';
-            }
+    function displayTypes(types) {
+        const typesContainer = document.getElementById('pokemon-types');
+        if (types.length === 1) {
+            typesContainer.textContent = types[0];
+        } else if (types.length > 1) {
+            typesContainer.textContent = types.join('/');
+        } else {
+            typesContainer.textContent = 'Unknown';
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Get the species name from the server-side rendered element
-            const speciesElement = document.getElementById('pokemon-species');
-            const species = speciesElement ? speciesElement.textContent.trim() : '';
-            if (species) {
-                getPokemonTypes(species);
-            } else {
-                console.error('No species found');
-            }
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get the species name from the server-side rendered element
+        const speciesElement = document.getElementById('pokemon-species');
+        const species = speciesElement ? speciesElement.textContent.trim() : '';
+        if (species) {
+            getPokemonTypes(species);
+        } else {
+            console.error('No species found');
+        }
+    });
+</script>
