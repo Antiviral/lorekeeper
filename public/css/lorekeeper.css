@@ -534,6 +534,17 @@ tr.outflow {
     background-color: white;
 }
 
+#gift-trade-sell-box {display:flex;}
+
+#gift-trade-sell-box .mr-2 {margin:0!important;}
+
+#gift-trade-sell-box h5 {margin: 0rem .5rem !important;}
+
+@media screen and (max-width: 800px) {
+    #gift-trade-sell-box {flex-wrap:wrap;}
+    #gift-trade-sell-box h5 {flex:100%;}
+  }
+
 /* INVENTORY *************************************************************************************/
 
 .inventory-category .inventory-body .inventory-item img {
