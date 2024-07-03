@@ -235,7 +235,7 @@
                 {!! Form::text('pokemonTypes', old('pokemonTypes'), ['class' => 'form-control']) !!}
             </div>
         </div>
-                
+
         <div class="form-group" id="subtypes">
             {!! Form::label('Subtype (Optional)') !!} @if ($isMyo)
                 {!! add_help(
