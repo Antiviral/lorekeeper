@@ -222,6 +222,20 @@
             {!! Form::select('species_id', $specieses, old('species_id'), ['class' => 'form-control', 'id' => 'species']) !!}
         </div>
 
+        <div class="form-group">
+            <div class="form-group">
+                {!! Form::label('Pokemon Species') !!}
+                {!! Form::text('pokemonSpecies', old('pokemonSpecies'), ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                {!! Form::label('Pokemon Types') !!}
+                {!! Form::text('pokemonTypes', old('pokemonTypes'), ['class' => 'form-control']) !!}
+            </div>
+        </div>
+                
         <div class="form-group" id="subtypes">
             {!! Form::label('Subtype (Optional)') !!} @if ($isMyo)
                 {!! add_help(

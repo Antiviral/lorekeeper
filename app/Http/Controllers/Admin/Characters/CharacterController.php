@@ -103,8 +103,8 @@ class CharacterController extends Controller {
             'x0', 'x1', 'y0', 'y1',
             'designer_id', 'designer_url',
             'artist_id', 'artist_url',
-            'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data',
-            'image', 'thumbnail', 'image_description',
+            'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data', 'pokemonSpecies', 'pokemonTypes',
+            'image', 'thumbnail', 'image_description', 
         ]);
         if ($character = $service->createCharacter($data, Auth::user())) {
             flash('Character created successfully.')->success();

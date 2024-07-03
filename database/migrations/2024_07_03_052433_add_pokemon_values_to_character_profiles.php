@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::table('characters', function (Blueprint $table) {
+        Schema::table('character_profiles', function (Blueprint $table) {
             $table->string('pokemonSpecies', 191)->nullable();
             $table->string('pokemonTypes', 191)->nullable();
             $table->string('pokemonTeam', 191)->nullable();
@@ -20,7 +20,7 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::table('characters', function (Blueprint $table) {
+        Schema::table('character_profiles', function (Blueprint $table) {
             $table->dropColumn('pokemonSpecies', 191)->nullable();
             $table->dropColumn('pokemonTypes', 191)->nullable();
             $table->dropColumn('pokemonTeam', 191)->nullable();

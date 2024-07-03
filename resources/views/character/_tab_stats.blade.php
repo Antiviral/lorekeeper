@@ -11,15 +11,24 @@
     <div class="col-lg-3 col-4">
         <h5>Species</h5>
     </div>
-    <div class="col-lg-9 col-8" id="pokemon-species">{!! $character->pokemonSpecies !!}</div>
+    <div class="col-lg-9 col-8">{!! $character->pokemonSpecies !!}</div>
 </div>
 
 <div class="row">
     <div class="col-lg-3 col-4">
         <h5>Type(s)</h5>
     </div>
-    <div class="col-lg-9 col-8" id="pokemon-types"></div>
+    <div class="col-lg-9 col-8">{!! $character->pokemonTypes !!}</div>
 </div>
+
+@if (!$character->is_myo_slot && !empty($character->pokemonTeam))
+    <div class="row">
+        <div class="col-lg-3 col-4">
+            <h5>Team</h5>
+        </div>
+        <div class="col-lg-9 col-8">{!! $character->pokemonTeam !!}</div>
+    </div>
+@endif
 
 <hr />
 

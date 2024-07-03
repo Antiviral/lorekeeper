@@ -11,7 +11,6 @@ use App\Services\CharacterManager;
 use App\Services\InventoryManager;
 use App\Services\Service;
 use DB;
-
 class RecruitService extends Service {
     /*
     |--------------------------------------------------------------------------
@@ -45,10 +44,12 @@ class RecruitService extends Service {
      */
     public function getTagData($tag) {
         //fetch data from DB, if there is no data then set to NULL instead
-        $characterData['name'] = $tag->data['name'] ?? null;
+        $characterData['name'] = isset($tag->data['name']) ? 'Recruit ' . $tag->data['name'] : null;
         $characterData['species_id'] = 1;
         $characterData['subtype_id'] = isset($tag->data['subtype_id']) && $tag->data['subtype_id'] ? $tag->data['subtype_id'] : null;
         $characterData['rarity_id'] = 1;
+        $characterData['pokemonSpecies'] = $tag->data['name'] ?? null;
+        $characterData['pokemonTypes'] = $types;
         $characterData['description'] = isset($tag->data['description']) && $tag->data['description'] ? $tag->data['description'] : null;
         $characterData['parsed_description'] = parse($characterData['description']);
         $characterData['sale_value'] = $tag->data['sale_value'] ?? 0;
@@ -87,10 +88,12 @@ class RecruitService extends Service {
      */
     public function updateData($tag, $data) {
         //put inputs into an array to transfer to the DB
-        $characterData['name'] = $data['name'] ?? null;
+        $characterData['name'] = isset($tag->data['name']) ? 'Recruit ' . $tag->data['name'] : null;
         $characterData['species_id'] = 1;
-        $characterData['subtype_id'] = isset($data['subtype_id']) && $data['subtype_id'] ? $data['subtype_id'] : null;
+        $characterData['subtype_id'] = isset($tag->data['subtype_id']) && $tag->data['subtype_id'] ? $tag->data['subtype_id'] : null;
         $characterData['rarity_id'] = 1;
+        $characterData['pokemonSpecies'] = $tag->data['name'] ?? null;
+        $characterData['pokemonTypes'] = $types;
         $characterData['description'] = isset($data['description']) && $data['description'] ? $data['description'] : null;
         $characterData['parsed_description'] = parse($characterData['description']);
         $characterData['sale_value'] = $data['sale_value'] ?? 0;
@@ -114,7 +117,7 @@ class RecruitService extends Service {
         return $this->rollbackReturn(false);
     }
 
-    /**
+     /**
      * Acts upon the item when used from the inventory.
      *
      * @param \App\Models\User\UserItem $stacks
@@ -140,13 +143,34 @@ class RecruitService extends Service {
 
                         // Set user who is opening the item
                         $characterData['user_id'] = $user->id;
+                        $selectedName = $this->weightedRandom($characterData['name'] ?? '');
+
+                        // Fetch Pokémon types from PokeAPI based on species name
+                        $pokemonSpecies = $selectedName; // Replace with your way of obtaining the species name
+                        $pokemonData = $this->getPokemonData($pokemonSpecies);
+
+                        // Extract types from the response and format as "Type1/Type2"
+                        $types = [];
+                        if ($pokemonData && isset($pokemonData['types'])) {
+                            foreach ($pokemonData['types'] as $type) {
+                                $types[] = ucfirst($type['type']['name']);
+                            }
+                        }
+
+                        // Format types as "Type1/Type2"
+                        $formattedTypes = implode('/', $types);
+
+                        // Assign formatted types to characterData
+                        $characterData['pokemonTypes'] = $formattedTypes;
 
                         // Parse name with weighted random selection
                         if (isset($characterData['name'])) {
-                            $characterData['name'] = $this->weightedRandom($characterData['name']);
+                            $characterData['name'] = 'Recruit ' . $selectedName;
                         } else {
-                            $characterData['name'] = 'recruit Slot'; // Default if name data is missing
+                            $characterData['name'] = 'Recruit Slot'; // Default if name data is missing
                         }
+
+                        $characterData['pokemonSpecies'] = $selectedName;
 
                         // Other default values
                         $characterData['transferrable_at'] = null;
@@ -165,62 +189,89 @@ class RecruitService extends Service {
                         $characterData['feature_id'][0] = null;
                         $characterData['feature_data'][0] = null;
 
-                        // Convert 'true' and 'false' as strings to true/null
-                        $characterData['is_sellable'] = $stack->item->tag('recruit')->data['is_sellable'] == 'true' ? true : null;
-                        $characterData['is_tradeable'] = $stack->item->tag('recruit')->data['is_tradeable'] == 'true' ? true : null;
-                        $characterData['is_giftable'] = $stack->item->tag('recruit')->data['is_giftable'] == 'true' ? true : null;
-                        $characterData['is_visible'] = $stack->item->tag('recruit')->data['is_visible'] == 'true' ? true : null;
-
-                        // Distribute user rewards
-                        $charService = new CharacterManager;
-                        if ($character = $charService->createCharacter($characterData, $user, true)) {
-                            flash('<a href="'.$character->url.'">'.$character->name.'</a> added to your team!')->success();
-                        } else {
-                            throw new \Exception('Failed to use slot.');
-                        }
-                    }
-                }
-            }
-
-            return $this->commitReturn(true);
-        } catch (\Exception $e) {
-            $this->setError('error', $e->getMessage());
-        }
-
-        return $this->rollbackReturn(false);
-    }
-
-    /**
-     * Performs weighted random selection from an array of names with weights.
-     *
-     * @param string $namesWithWeightsString
-     *
-     * @return string
-     */
-    private function weightedRandom($namesWithWeightsString) {
-        $weightedNames = [];
-        $entries = preg_split('/[\r\n]+/', $namesWithWeightsString, -1, PREG_SPLIT_NO_EMPTY);
-
-        foreach ($entries as $entry) {
-            // Check if the entry contains a weight specifier
-            if (strpos($entry, '^') !== false) {
-                $parts = explode('^', $entry);
-                $name = trim($parts[0]);
-                $weight = isset($parts[1]) ? (int) trim($parts[1]) : 1;
-            } else {
-                // Default weight if not specified
-                $name = trim($entry);
-                $weight = 1;
-            }
-
-            for ($i = 0; $i < $weight; $i++) {
-                $weightedNames[] = $name;
-            }
-        }
-
-        // Perform weighted random selection
-        $selectedName = $weightedNames[array_rand($weightedNames)];
-
-        return 'Recruit '.$selectedName; // Append " Recruit" at the end
-    }
-}
+                         // Convert 'true' and 'false' as strings to true/null
+                         $characterData['is_sellable'] = $stack->item->tag('recruit')->data['is_sellable'] == 'true' ? true : null;
+                         $characterData['is_tradeable'] = $stack->item->tag('recruit')->data['is_tradeable'] == 'true' ? true : null;
+                         $characterData['is_giftable'] = $stack->item->tag('recruit')->data['is_giftable'] == 'true' ? true : null;
+                         $characterData['is_visible'] = $stack->item->tag('recruit')->data['is_visible'] == 'true' ? true : null;
+ 
+                         // Distribute user rewards
+                         $charService = new CharacterManager;
+                         if ($character = $charService->createCharacter($characterData, $user, true)) {
+                             flash('<a href="'.$character->url.'">'.$character->name.'</a> added to your team!')->success();
+                         } else {
+                             throw new \Exception('Failed to use slot.');
+                         }
+                     }
+                 }
+             }
+ 
+             return $this->commitReturn(true);
+         } catch (\Exception $e) {
+             $this->setError('error', $e->getMessage());
+         }
+ 
+         return $this->rollbackReturn(false);
+     }
+ 
+     /**
+      * Performs weighted random selection from an array of names with weights.
+      *
+      * @param string $namesWithWeightsString
+      *
+      * @return string
+      */
+     private function weightedRandom($namesWithWeightsString) {
+         $weightedNames = [];
+         $entries = preg_split('/[\r\n]+/', $namesWithWeightsString, -1, PREG_SPLIT_NO_EMPTY);
+ 
+         foreach ($entries as $entry) {
+             // Check if the entry contains a weight specifier
+             if (strpos($entry, '^') !== false) {
+                 $parts = explode('^', $entry);
+                 $name = trim($parts[0]);
+                 $weight = isset($parts[1]) ? (int) trim($parts[1]) : 1;
+             } else {
+                 // Default weight if not specified
+                 $name = trim($entry);
+                 $weight = 1;
+             }
+ 
+             for ($i = 0; $i < $weight; $i++) {
+                 $weightedNames[] = $name;
+             }
+         }
+ 
+         // Perform weighted random selection
+         $selectedName = $weightedNames[array_rand($weightedNames)];
+ 
+         return $selectedName; // Append " Recruit" at the end
+     }
+ 
+     /**
+      * Fetches Pokémon data from the PokeAPI.
+      *
+      * @param string $pokemonSpecies
+      *
+      * @return array|null
+      */
+     private function getPokemonData($pokemonSpecies) {
+         $url = "https://pokeapi.co/api/v2/pokemon/" . strtolower($pokemonSpecies);
+ 
+         $contextOptions = [
+             "http" => [
+                 "method" => "GET",
+                 "header" => "User-Agent: PHP\r\n"
+             ]
+         ];
+ 
+         $context = stream_context_create($contextOptions);
+         $response = @file_get_contents($url, false, $context);
+ 
+         if ($response === FALSE) {
+             return null;
+         }
+ 
+         return json_decode($response, true);
+     }
+ }

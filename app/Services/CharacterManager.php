@@ -90,12 +90,13 @@ class CharacterManager extends Service {
             }
             if (!$isMyo) {
                 if (!(isset($data['species_id']) && $data['species_id'])) {
-                    throw new \Exception('Characters require a species.');
+                    throw new \Exception('Characters require a species id.');
                 }
                 if (!(isset($data['rarity_id']) && $data['rarity_id'])) {
                     throw new \Exception('Characters require a rarity.');
                 }
             }
+
             if (isset($data['subtype_id']) && $data['subtype_id']) {
                 $subtype = Subtype::find($data['subtype_id']);
                 if (!(isset($data['species_id']) && $data['species_id'])) {
@@ -139,6 +140,12 @@ class CharacterManager extends Service {
 
             // Update the character's image ID
             $character->character_image_id = $image->id;
+            $character->save();
+
+            $character->pokemonSpecies = $data['pokemonSpecies'];
+            $character->save();
+
+            $character->pokemonTypes = $data['pokemonTypes'];
             $character->save();
 
             // Add a log for the character
@@ -1301,6 +1308,9 @@ class CharacterManager extends Service {
             }
             $character->save();
 
+            $character->pokemonTeam = $data['pokemonTeam'];
+            $character->save();
+
             if (!$character->is_myo_slot && config('lorekeeper.extensions.character_TH_profile_link')) {
                 $character->profile->link = $data['link'];
             }
@@ -1853,7 +1863,7 @@ class CharacterManager extends Service {
             $characterData = Arr::only($data, [
                 'character_category_id', 'rarity_id', 'user_id',
                 'number', 'slug', 'description',
-                'sale_value', 'transferrable_at', 'is_visible',
+                'sale_value', 'transferrable_at', 'is_visible', 'pokemonSpecies', 'pokemonTypes',
             ]);
 
             $characterData['name'] = ($isMyo && isset($data['name'])) ? $data['name'] : null;
