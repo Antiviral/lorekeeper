@@ -7,6 +7,11 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('Pokemon Species') !!} {!! add_help('Enter a descriptive name for the type of character this slot can create, e.g. Rare MYO Slot. This will be listed on the MYO slot masterlist.') !!}
+    {!! Form::textarea('pokemonSpecies', $tag->getData()['pokemonSpecies'], ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('Description (Optional)') !!}
     @if ($isMyo)
         {!! add_help('This section is for making additional notes about the MYO slot. If there are restrictions for the character that can be created by this slot that cannot be expressed with the options below, use this section to describe them.') !!}

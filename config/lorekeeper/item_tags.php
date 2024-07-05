@@ -19,6 +19,12 @@ return [
         'background_color' => '#f6993f',
     ],
 
+    'recruit'  => [
+        'name'             => 'Recruit',
+        'text_color'       => '#ffffff',
+        'background_color' => '#f6993f',
+    ],
+
     'slot' => [
         'name'             => 'Slot',
         'text_color'       => '#ffffff',
