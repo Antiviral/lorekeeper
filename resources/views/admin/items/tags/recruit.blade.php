@@ -2,13 +2,8 @@
 
 <h3>Basic Information</h3>
 <div class="form-group">
-    {!! Form::label('Name') !!} {!! add_help('Enter a descriptive name for the type of character this slot can create, e.g. Rare MYO Slot. This will be listed on the MYO slot masterlist.') !!}
+    {!! Form::label('Possible Pokemon') !!} 
     {!! Form::textarea('name', $tag->getData()['name'], ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('Pokemon Species') !!} {!! add_help('Enter a descriptive name for the type of character this slot can create, e.g. Rare MYO Slot. This will be listed on the MYO slot masterlist.') !!}
-    {!! Form::textarea('pokemonSpecies', $tag->getData()['pokemonSpecies'], ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
