@@ -45,7 +45,7 @@ class RecruitService extends Service {
      */
     public function getTagData($tag) {
         //fetch data from DB, if there is no data then set to NULL instead
-        $characterData['name'] = isset($tag->data['name']) ? $tag->data['name'] : null;
+        $characterData['name'] = $tag->data['name'] ?? null;
         $characterData['species_id'] = 1;
         $characterData['subtype_id'] = isset($tag->data['subtype_id']) && $tag->data['subtype_id'] ? $tag->data['subtype_id'] : null;
         $characterData['rarity_id'] = 1;
