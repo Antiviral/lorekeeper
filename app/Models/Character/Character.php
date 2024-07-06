@@ -32,7 +32,7 @@ class Character extends Model {
         'is_sellable', 'is_tradeable', 'is_giftable',
         'sale_value', 'transferrable_at', 'is_visible',
         'is_gift_art_allowed', 'is_gift_writing_allowed', 'is_trading', 'sort',
-        'is_myo_slot', 'name', 'trade_id', 'pokemonSpecies', 'pokemonTypes', 'pokemonTeam', 'owner_url',
+        'is_myo_slot', 'name', 'trade_id', 'pokemon_species', 'pokemon_types', 'pokemon_team', 'owner_url',
     ];
 
     /**
@@ -80,9 +80,9 @@ class Character extends Model {
         'sale_value'             => 'nullable',
         'image'                  => 'required|mimes:jpeg,jpg,gif,png|max:20000',
         'thumbnail'              => 'nullable|mimes:jpeg,jpg,gif,png|max:20000',
-        'pokemonSpecies'         => 'nullable',
-        'pokemonTeam'            => 'nullable',
-        'pokemonTypes'           => 'nullable',
+        'pokemon_species'         => 'nullable',
+        'pokemon_team'            => 'nullable',
+        'pokemon_types'           => 'nullable',
         'owner_url'              => 'url|nullable',
     ];
 
@@ -97,9 +97,9 @@ class Character extends Model {
         'slug'                   => 'required',
         'description'            => 'nullable',
         'sale_value'             => 'nullable',
-        'pokemonSpecies'         => 'nullable',
-        'pokemonTeam'            => 'nullable',
-        'pokemonTypes'           => 'nullable',
+        'pokemon_species'         => 'nullable',
+        'pokemon_team'            => 'nullable',
+        'pokemon_types'           => 'nullable',
     ];
 
     /**
@@ -117,9 +117,9 @@ class Character extends Model {
         'name'                   => 'required',
         'image'                  => 'nullable|mimes:jpeg,gif,png|max:20000',
         'thumbnail'              => 'nullable|mimes:jpeg,gif,png|max:20000',
-        'pokemonSpecies'         => 'nullable',
-        'pokemonTeam'            => 'nullable',
-        'pokemonTypes'           => 'nullable',
+        'pokemon_species'         => 'nullable',
+        'pokemon_team'            => 'nullable',
+        'pokemon_types'           => 'nullable',
     ];
 
     /**********************************************************************************************

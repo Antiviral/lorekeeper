@@ -49,8 +49,8 @@ class RecruitService extends Service {
         $characterData['species_id'] = 1;
         $characterData['subtype_id'] = isset($tag->data['subtype_id']) && $tag->data['subtype_id'] ? $tag->data['subtype_id'] : null;
         $characterData['rarity_id'] = 1;
-        $characterData['pokemonSpecies'] = $tag->data['name'] ?? null;
-        $characterData['pokemonTypes'] = $types ?? null;
+        $characterData['pokemon_species'] = $tag->data['name'] ?? null;
+        $characterData['pokemon_types'] = $types ?? null;
         $characterData['description'] = isset($tag->data['description']) && $tag->data['description'] ? $tag->data['description'] : null;
         $characterData['parsed_description'] = parse($characterData['description']);
         $characterData['sale_value'] = $tag->data['sale_value'] ?? 0;
@@ -93,8 +93,8 @@ class RecruitService extends Service {
         $characterData['species_id'] = 1;
         $characterData['subtype_id'] = isset($tag->data['subtype_id']) && $tag->data['subtype_id'] ? $tag->data['subtype_id'] : null;
         $characterData['rarity_id'] = 1;
-        $characterData['pokemonSpecies'] = $tag->data['name'] ?? null;
-        $characterData['pokemonTypes'] = $types ?? null;
+        $characterData['pokemon_species'] = $tag->data['name'] ?? null;
+        $characterData['pokemon_types'] = $types ?? null;
         $characterData['description'] = isset($data['description']) && $data['description'] ? $data['description'] : null;
         $characterData['parsed_description'] = parse($characterData['description']);
         $characterData['sale_value'] = $data['sale_value'] ?? 0;
@@ -147,8 +147,8 @@ class RecruitService extends Service {
                         $selectedName = $this->weightedRandom($characterData['name'] ?? '');
 
                         // Fetch Pokémon types from PokeAPI based on species name
-                        $pokemonSpecies = $selectedName; // Replace with your way of obtaining the species name
-                        $pokemonData = $this->getPokemonData($pokemonSpecies);
+                        $pokemon_species = $selectedName; // Replace with your way of obtaining the species name
+                        $pokemonData = $this->getPokemonData($pokemon_species);
 
                         // Extract types from the response and format as "Type1/Type2"
                         $types = [];
@@ -162,7 +162,7 @@ class RecruitService extends Service {
                         $formattedTypes = implode('/', $types);
 
                         // Assign formatted types to characterData
-                        $characterData['pokemonTypes'] = $formattedTypes;
+                        $characterData['pokemon_types'] = $formattedTypes;
 
                         // Parse name with weighted random selection
                         if (isset($characterData['name'])) {
@@ -171,7 +171,7 @@ class RecruitService extends Service {
                             $characterData['name'] = 'Recruit Slot'; // Default if name data is missing
                         }
 
-                        $characterData['pokemonSpecies'] = $selectedName;
+                        $characterData['pokemon_species'] = $selectedName;
 
                         // Other default values
                         $characterData['transferrable_at'] = null;
@@ -252,12 +252,12 @@ class RecruitService extends Service {
     /**
      * Fetches Pokémon data from the PokeAPI.
      *
-     * @param string $pokemonSpecies
+     * @param string $pokemon_species
      *
      * @return array|null
      */
-    private function getPokemonData($pokemonSpecies) {
-        $url = 'https://pokeapi.co/api/v2/pokemon/'.strtolower($pokemonSpecies);
+    private function getPokemonData($pokemon_species) {
+        $url = 'https://pokeapi.co/api/v2/pokemon/'.strtolower($pokemon_species);
 
         $contextOptions = [
             'http' => [

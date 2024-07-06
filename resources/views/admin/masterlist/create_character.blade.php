@@ -225,14 +225,14 @@
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('Pokemon Species') !!}
-                {!! Form::text('pokemonSpecies', old('pokemonSpecies'), ['class' => 'form-control']) !!}
+                {!! Form::text('pokemon_species', old('pokemon_species'), ['class' => 'form-control']) !!}
             </div>
         </div>
 
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('Pokemon Types') !!}
-                {!! Form::text('pokemonTypes', old('pokemonTypes'), ['class' => 'form-control']) !!}
+                {!! Form::text('pokemon_types', old('pokemon_types'), ['class' => 'form-control']) !!}
             </div>
         </div>
 

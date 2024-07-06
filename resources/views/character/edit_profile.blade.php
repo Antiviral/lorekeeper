@@ -35,8 +35,18 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('Team', 'Pokemon Team') !!}
-            {!! Form::text('pokemonTeam', $character->pokemonTeam, ['class' => 'form-control']) !!}
+            {!! Form::label('pokemon_team', 'Pokemon Team') !!}
+            {!! Form::text('pokemon_team', $character->pokemon_team, ['class' => 'form-control']) !!}
+        </div>
+        
+        <div class="form-group">
+            {!! Form::label('pokemon_species', 'Pokemon Species') !!}
+            {!! Form::text('pokemon_species', $character->pokemon_species, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('pokemon_types', 'Pokemon Types') !!}
+            {!! Form::text('pokemon_types', $character->pokemon_types, ['class' => 'form-control']) !!}
         </div>
 
         @if (config('lorekeeper.extensions.character_TH_profile_link'))

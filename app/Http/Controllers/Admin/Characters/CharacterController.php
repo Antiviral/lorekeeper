@@ -103,7 +103,7 @@ class CharacterController extends Controller {
             'x0', 'x1', 'y0', 'y1',
             'designer_id', 'designer_url',
             'artist_id', 'artist_url',
-            'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data', 'pokemonSpecies', 'pokemonTypes',
+            'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data', 'pokemon_species', 'pokemon_types',
             'image', 'thumbnail', 'image_description',
         ]);
         if ($character = $service->createCharacter($data, Auth::user())) {
@@ -206,7 +206,7 @@ class CharacterController extends Controller {
         $data = $request->only([
             'character_category_id', 'number', 'slug',
             'is_giftable', 'is_tradeable', 'is_sellable', 'sale_value',
-            'transferrable_at', 'pokwmon_team',
+            'transferrable_at',
         ]);
         $this->character = Character::where('slug', $slug)->first();
         if (!$this->character) {

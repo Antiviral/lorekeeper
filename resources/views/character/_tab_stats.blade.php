@@ -11,22 +11,22 @@
     <div class="col-lg-3 col-4">
         <h5>Species</h5>
     </div>
-    <div class="col-lg-9 col-8">{!! $character->pokemonSpecies !!}</div>
+    <div class="col-lg-9 col-8">{!! $character->pokemon_species !!}</div>
 </div>
 
 <div class="row">
     <div class="col-lg-3 col-4">
         <h5>Type(s)</h5>
     </div>
-    <div class="col-lg-9 col-8">{!! $character->pokemonTypes !!}</div>
+    <div class="col-lg-9 col-8">{!! $character->pokemon_types !!}</div>
 </div>
 
-@if (!$character->is_myo_slot && !empty($character->pokemonTeam))
+@if (!$character->is_myo_slot && !empty($character->pokemon_team))
     <div class="row">
         <div class="col-lg-3 col-4">
             <h5>Team</h5>
         </div>
-        <div class="col-lg-9 col-8">{!! $character->pokemonTeam !!}</div>
+        <div class="col-lg-9 col-8">{!! $character->pokemon_team !!}</div>
     </div>
 @endif
 
@@ -82,7 +82,7 @@
 @endif
 
 <script>
-    async function getPokemonTypes(species) {
+    async function getpokemon_types(species) {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.toLowerCase()}`);
             if (!response.ok) {
@@ -116,7 +116,7 @@
         const speciesElement = document.getElementById('pokemon-species');
         const species = speciesElement ? speciesElement.textContent.trim() : '';
         if (species) {
-            getPokemonTypes(species);
+            getpokemon_types(species);
         } else {
             console.error('No species found');
         }

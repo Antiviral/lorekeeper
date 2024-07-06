@@ -49,6 +49,16 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('pokemon_species', 'Pokemon Species') !!}
+            {!! Form::text('pokemon_species', $request->character->pokemon_species, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('pokemon_types', 'Pokemon Types') !!}
+            {!! Form::text('pokemon_types', $request->character->pokemon_types, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('Traits') !!}
             <div><a href="#" class="btn btn-primary mb-2" id="add-feature">Add Trait</a></div>
             <div id="featureList">

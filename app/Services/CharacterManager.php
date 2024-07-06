@@ -142,10 +142,10 @@ class CharacterManager extends Service {
             $character->character_image_id = $image->id;
             $character->save();
 
-            $character->pokemonSpecies = $data['pokemonSpecies'];
+            $character->pokemon_species = $data['pokemon_species'];
             $character->save();
 
-            $character->pokemonTypes = $data['pokemonTypes'];
+            $character->pokemon_types = $data['pokemon_types'];
             $character->save();
 
             // Add a log for the character
@@ -1308,7 +1308,13 @@ class CharacterManager extends Service {
             }
             $character->save();
 
-            $character->pokemonTeam = $data['pokemonTeam'];
+            $character->pokemon_team = $data['pokemon_team'];
+            $character->save();
+
+            $character->pokemon_species = $data['pokemon_species'];
+            $character->save();
+
+            $character->pokemon_types = $data['pokemon_types'];
             $character->save();
 
             if (!$character->is_myo_slot && config('lorekeeper.extensions.character_TH_profile_link')) {
@@ -1863,7 +1869,7 @@ class CharacterManager extends Service {
             $characterData = Arr::only($data, [
                 'character_category_id', 'rarity_id', 'user_id',
                 'number', 'slug', 'description',
-                'sale_value', 'transferrable_at', 'is_visible', 'pokemonSpecies', 'pokemonTypes',
+                'sale_value', 'transferrable_at', 'is_visible', 'pokemon_species', 'pokemon_types',
             ]);
 
             $characterData['name'] = ($isMyo && isset($data['name'])) ? $data['name'] : null;

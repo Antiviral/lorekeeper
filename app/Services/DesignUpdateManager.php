@@ -406,6 +406,8 @@ class DesignUpdateManager extends Service {
             // Update other stats
             $request->species_id = $species->id;
             $request->rarity_id = $rarity->id;
+            $request->character->pokemon_species = $data['pokemon_species'];
+            $request->character->pokemon_types = $data['pokemon_types'];
             $request->subtype_id = $subtype ? $subtype->id : null;
             $request->has_features = 1;
             $request->save();
@@ -613,7 +615,8 @@ class DesignUpdateManager extends Service {
             $request->character->slug = $data['slug'];
             $request->character->rarity_id = $request->rarity_id;
 
-            $request->character->description = $data['description'];
+            $request->character->pokemon_species = $data['pokemon_species'];
+            $request->character->pokemon_types = $data['pokemon_types'];
             $request->character->parsed_description = parse($data['description']);
 
             $request->character->is_sellable = isset($data['is_sellable']);
