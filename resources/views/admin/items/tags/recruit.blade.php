@@ -2,7 +2,7 @@
 
 <h3>Basic Information</h3>
 <div class="form-group">
-    {!! Form::label('Possible Pokemon') !!} 
+    {!! Form::label('Possible Pokemon') !!}
     {!! Form::textarea('name', $tag->getData()['name'], ['class' => 'form-control']) !!}
 </div>
 
