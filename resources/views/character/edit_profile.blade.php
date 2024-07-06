@@ -38,7 +38,7 @@
             {!! Form::label('pokemon_team', 'Pokemon Team') !!}
             {!! Form::text('pokemon_team', $character->pokemon_team, ['class' => 'form-control']) !!}
         </div>
-        
+
         <div class="form-group">
             {!! Form::label('pokemon_species', 'Pokemon Species') !!}
             {!! Form::text('pokemon_species', $character->pokemon_species, ['class' => 'form-control']) !!}
