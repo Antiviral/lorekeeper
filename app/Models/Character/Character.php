@@ -71,19 +71,19 @@ class Character extends Model {
      * @var array
      */
     public static $createRules = [
-        'character_category_id'  => 'required',
-        'rarity_id'              => 'required',
-        'user_id'                => 'nullable',
-        'number'                 => 'required',
-        'slug'                   => 'required|alpha_dash',
-        'description'            => 'nullable',
-        'sale_value'             => 'nullable',
-        'image'                  => 'required|mimes:jpeg,jpg,gif,png|max:20000',
-        'thumbnail'              => 'nullable|mimes:jpeg,jpg,gif,png|max:20000',
+        'character_category_id'   => 'required',
+        'rarity_id'               => 'required',
+        'user_id'                 => 'nullable',
+        'number'                  => 'required',
+        'slug'                    => 'required|alpha_dash',
+        'description'             => 'nullable',
+        'sale_value'              => 'nullable',
+        'image'                   => 'required|mimes:jpeg,jpg,gif,png|max:20000',
+        'thumbnail'               => 'nullable|mimes:jpeg,jpg,gif,png|max:20000',
         'pokemon_species'         => 'nullable',
         'pokemon_team'            => 'nullable',
         'pokemon_types'           => 'nullable',
-        'owner_url'              => 'url|nullable',
+        'owner_url'               => 'url|nullable',
     ];
 
     /**
@@ -92,11 +92,11 @@ class Character extends Model {
      * @var array
      */
     public static $updateRules = [
-        'character_category_id'  => 'required',
-        'number'                 => 'required',
-        'slug'                   => 'required',
-        'description'            => 'nullable',
-        'sale_value'             => 'nullable',
+        'character_category_id'   => 'required',
+        'number'                  => 'required',
+        'slug'                    => 'required',
+        'description'             => 'nullable',
+        'sale_value'              => 'nullable',
         'pokemon_species'         => 'nullable',
         'pokemon_team'            => 'nullable',
         'pokemon_types'           => 'nullable',
@@ -108,15 +108,15 @@ class Character extends Model {
      * @var array
      */
     public static $myoRules = [
-        'rarity_id'              => 'nullable',
-        'user_id'                => 'nullable',
-        'number'                 => 'nullable',
-        'slug'                   => 'nullable',
-        'description'            => 'nullable',
-        'sale_value'             => 'nullable',
-        'name'                   => 'required',
-        'image'                  => 'nullable|mimes:jpeg,gif,png|max:20000',
-        'thumbnail'              => 'nullable|mimes:jpeg,gif,png|max:20000',
+        'rarity_id'               => 'nullable',
+        'user_id'                 => 'nullable',
+        'number'                  => 'nullable',
+        'slug'                    => 'nullable',
+        'description'             => 'nullable',
+        'sale_value'              => 'nullable',
+        'name'                    => 'required',
+        'image'                   => 'nullable|mimes:jpeg,gif,png|max:20000',
+        'thumbnail'               => 'nullable|mimes:jpeg,gif,png|max:20000',
         'pokemon_species'         => 'nullable',
         'pokemon_team'            => 'nullable',
         'pokemon_types'           => 'nullable',
