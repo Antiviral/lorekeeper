@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="small">
-                {!! $featured->pokemon_species ? $featured->pokemon_species : 'Error' !!}<br/>{!! $featured->displayOwner !!}
+                {!! $featured->pokemon_species ? $featured->pokemon_species : 'Error' !!}<br />{!! $featured->displayOwner !!}
             </div>
         @else
             <p>There is no featured pokemon.</p>
