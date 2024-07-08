@@ -1,5 +1,5 @@
 <ul class="text-center">
-    <li class="sidebar-header"><a href="#" class="card-link">Featured Character</a></li>
+    <li class="sidebar-header"><a href="#" class="card-link">Featured Pokemon</a></li>
 
     <li class="sidebar-section p-2">
         @if (isset($featured) && $featured)
@@ -14,10 +14,10 @@
                 </a>
             </div>
             <div class="small">
-                {!! $featured->image->species_id ? $featured->image->species->displayName : 'No Species' !!} ・ {!! $featured->image->rarity_id ? $featured->image->rarity->displayName : 'No Rarity' !!} ・ {!! $featured->displayOwner !!}
+                {!! $featured->pokemon_species ? $featured->pokemon_species : 'Error' !!}<br/>{!! $featured->displayOwner !!}
             </div>
         @else
-            <p>There is no featured character.</p>
+            <p>There is no featured pokemon.</p>
         @endif
     </li>
 </ul>

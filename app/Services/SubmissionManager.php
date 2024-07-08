@@ -102,8 +102,10 @@ class SubmissionManager extends Service {
                     addAsset($userAssets, $stack, $data['stack_quantity'][$key]);
                 }
 
-                if ($prompt->staff_only && !$user->isStaff) {
-                    throw new \Exception('This prompt may only be submitted to by staff members.');
+                if (!$isClaim && !isset($data['prompt_id'])) {
+                    if ($prompt->staff_only && !$user->isStaff) {
+                        throw new \Exception('This prompt may only be submitted to by staff members.');
+                    }
                 }
             } else {
                 $prompt = null;
