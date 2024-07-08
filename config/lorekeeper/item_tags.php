@@ -32,8 +32,8 @@ return [
     ],
 
     'choicebox' => [
-        'name' => 'Choice Box',
-        'text_color' => '#ffffff',
-        'background_color' => '#56639E'
+        'name'             => 'Choice Box',
+        'text_color'       => '#ffffff',
+        'background_color' => '#56639E',
     ],
 ];
