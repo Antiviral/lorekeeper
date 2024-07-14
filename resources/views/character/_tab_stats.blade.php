@@ -34,7 +34,9 @@
     <div class="col-lg-3 col-4">
         <h5>Level</h5>
     </div>
-    <div class="col-lg-9 col-8"><div id="pokemon-current-level"></div></div>
+    <div class="col-lg-9 col-8">
+        <div id="pokemon-current-level"></div>
+    </div>
 </div>
 
 <div class="row">
@@ -105,11 +107,11 @@
     document.addEventListener("DOMContentLoaded", function() {
         var experienceElement = document.getElementById("pokemon-current-experience");
         var levelElement = document.getElementById("pokemon-current-level");
-        
+
         if (experienceElement && levelElement) {
             var experienceText = experienceElement.innerText || experienceElement.textContent;
             var experience = parseInt(experienceText.replace(/[^\d]/g, ''), 10);
-            
+
             if (!isNaN(experience)) {
                 var level = Math.floor(experience / 100);
                 levelElement.innerText = level;
