@@ -30,6 +30,26 @@
     </div>
 @endif
 
+<div class="row">
+    <div class="col-lg-3 col-4">
+        <h5>Level</h5>
+    </div>
+    <div class="col-lg-9 col-8"><div id="pokemon-current-level"></div></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3 col-4">
+        <h5>Total Exp.</h5>
+    </div>
+    <div class="col-lg-9 col-8">
+        @foreach ($character->getCurrencies(true) as $currency)
+            @if ($currency->id == 2)
+                <div id="pokemon-current-experience">{!! $currency->display($currency->quantity) !!}</div>
+            @endif
+        @endforeach
+    </div>
+</div>
+
 <hr />
 
 <div class="row">
@@ -82,43 +102,18 @@
 @endif
 
 <script>
-    async function getpokemon_types(species) {
-        try {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${species.toLowerCase()}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    document.addEventListener("DOMContentLoaded", function() {
+        var experienceElement = document.getElementById("pokemon-current-experience");
+        var levelElement = document.getElementById("pokemon-current-level");
+        
+        if (experienceElement && levelElement) {
+            var experienceText = experienceElement.innerText || experienceElement.textContent;
+            var experience = parseInt(experienceText.replace(/[^\d]/g, ''), 10);
+            
+            if (!isNaN(experience)) {
+                var level = Math.floor(experience / 100);
+                levelElement.innerText = level;
             }
-            const data = await response.json();
-
-            // Extract and capitalize the types
-            const types = data.types.map(typeInfo => typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1));
-
-            // Display the types
-            displayTypes(types);
-        } catch (error) {
-            console.error('Fetch error: ', error);
-        }
-    }
-
-    function displayTypes(types) {
-        const typesContainer = document.getElementById('pokemon-types');
-        if (types.length === 1) {
-            typesContainer.textContent = types[0];
-        } else if (types.length > 1) {
-            typesContainer.textContent = types.join('/');
-        } else {
-            typesContainer.textContent = 'Unknown';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Get the species name from the server-side rendered element
-        const speciesElement = document.getElementById('pokemon-species');
-        const species = speciesElement ? speciesElement.textContent.trim() : '';
-        if (species) {
-            getpokemon_types(species);
-        } else {
-            console.error('No species found');
         }
     });
 </script>
